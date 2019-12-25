@@ -1,0 +1,22 @@
+version: '3.3'
+services:
+  data:
+    image: mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_USER: "pay4"
+      MYSQL_PASSWORD: "@shobaki"
+      MYSQL_DATABASE: "ebs_book"
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+      
+  bookspring:
+    image: book-rest
+    ports:
+    - 8080:8080
+    environment:
+      JAVA_OPT: "-Xms128m -Xmx256m"
+      spring.datasource.url: "jdbc:mysql://data:3306/ebs_book"
+    depends_on:
+      - "data"
+    restart: on-failure
