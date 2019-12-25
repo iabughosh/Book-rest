@@ -2,6 +2,8 @@ package com.book.endpoint;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +28,7 @@ public class BookController {
 	}
 	
 	@PostMapping(path = "/add",produces = "application/json")
+	@Transactional
 	public ResponseEntity<String> addBook(@RequestBody Book book){		
 		return bs.addBook(book);			
 	}

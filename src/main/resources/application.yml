@@ -1,0 +1,34 @@
+server:
+   port: 8080
+   servlet:
+      context-path: /book
+spring:
+   jpa:
+      properties:
+         hibernate:
+            show_sql: false
+            hbm2ddl:
+               auto: validate
+            connection:
+               autocommit: false
+            generate_statistics: false
+params:
+   datasource:
+      type: com.zaxxer.hikari.HikariDataSource
+      url: jdbc:mysql://localhost:3306/ebs_book
+      driverClassName: com.mysql.jdbc.Driver
+      hikari:
+         username: root
+         password: root
+         jdbc-url: jdbc:mysql://localhost:3306/ebs_book
+         idle-timeout: 1000
+         connection-test-query: SELECT 1 FROM DUAL
+         connectionTimeout: 8000
+         maximum-pool-size: 20
+         maxLifetime: 10000
+         pool-name: BookPool
+         leakDetectionThreshold: 10000
+         auto-commit: false
+logging:
+   level:
+      com.zaxxer.hikari.HikariConfig: DEBUG
